@@ -18,5 +18,160 @@ Apply data visualization techniques to identify the patterns of the data.
 
 
 # CODE
+~~~
+Developed by : K.Balaji
+Register number : 212221230011
+~~~
+~~~
+import pandas as pd
+import numpy as np
+df=pd.read_csv("Superstore.csv")
 
-# OUPUT
+df.head()
+
+#Data Visualization using Seaborn
+
+import seaborn as sns
+from matplotlib import pyplot as plt
+
+#1.Line plot
+
+plt.figure(figsize=(8,5))
+sns.lineplot(x="Segment",y="Region",data=df,marker='o')
+plt.xticks(rotation = 90)
+sns.lineplot(x='Ship Mode',y='Category', hue ="Segment",data=df)
+sns.lineplot(x="Category",y="Sales",data=df,marker='o')
+
+#2.Scatterplot
+
+sns.scatterplot(x='Category',y='Sub-Category',data=df)
+sns.scatterplot(x='Category', y='Sub-Category', hue ="Segment",data=df)
+plt.figure(figsize=(10,7))
+sns.scatterplot(x="Region",y="Sales",data=df)
+plt.xticks(rotation = 90)
+
+#3.Boxplot
+
+sns.boxplot(x="Sub-Category",y="Discount",data=df)
+sns.boxplot( x="Profit", y="Category",data=df)
+
+#4.Barplot
+
+sns.barplot(x="Sub-Category",y="Sales",data=df)
+plt.xticks(rotation = 90)
+sns.barplot(x="Category",y="Sales",data=df)
+plt.xticks(rotation = 90)
+
+#5.Pointplot
+
+sns.pointplot(x=df["Quantity"],y=df["Discount"])
+
+#6.Count plot
+
+sns.countplot(x="Category",data=df)
+sns.countplot(x="Sub-Category",data=df)
+
+#7.Histogram
+
+sns.histplot(data=df,x ='Ship Mode',hue='Sub-Category')
+
+#8.KDE Plot
+
+sns.kdeplot(x="Profit", data = df,hue='Category')
+
+#Data Visualization Using MatPlotlib
+
+#1.Plot
+
+plt.plot(df['Category'], df['Sales'])
+plt.show()
+
+#2.Heatmap
+
+df.corr()
+plt.subplots(figsize=(12,7))
+sns.heatmap(df.corr(),annot=True)
+
+#3.Piechart
+
+df1=df.groupby(by=["Ship Mode"]).sum()
+labels=[]
+for i in df1.index:
+    labels.append(i)
+colors=sns.color_palette("bright")
+plt.pie(df1["Sales"],labels=labels,autopct="%0.0f%%")
+plt.show()
+
+df3=df.groupby(by=["Category"]).sum()
+labels=[]
+for i in df3.index:
+    labels.append(i) 
+plt.figure(figsize=(8,8))
+colors = sns.color_palette('pastel')
+plt.pie(df3["Profit"],colors = colors,labels=labels, autopct = '%0.0f%%')
+plt.show()
+
+#4.Histogram
+
+plt.hist(df["Sub-Category"],facecolor="peru",edgecolor="blue",bins=10)
+plt.show()
+
+#5.Bargraph
+
+plt.bar(df.index,df['Category'])
+plt.show()
+
+#6.Scatterplot
+
+plt.scatter(df["Region"],df["Profit"], c ="blue")
+plt.show()              
+
+#7.Boxplot
+
+plt.boxplot(x="Sales",data=df)
+plt.show()
+
+
+~~~
+
+# OUTPUT
+## Dataset
+![output](./1.png)
+## Data Visualization using Seaborn:
+### Line plot:
+![output](./2.png)
+### Scatter plot:
+![output](./3.png)
+![output](./4.png)
+### Box plot:
+![output](./5.png)
+### Bar plot:
+![output](./6.png)
+### Point plot:
+![output](./7.png)
+### Count plot:
+![output](./8.png)
+### Histogram:
+![output](./9.png)
+### KDE plot:
+![output](./10.png)
+## Data Visualization Using MatPlotlib
+### Plot:
+![output](./11.png)
+### Heatmap:
+![output](./12.png)
+## Piechart:
+### Profit:
+![output](./13.png)
+### Sales:
+![output](./14.png)
+### Histogram(Sub_category):
+![output](./15.png)
+### Bargraph(Category):
+![output](./16.png)
+### Scatterplot(Region):
+![output](./17.png)
+### BoxPlot(Sales):
+![output](./18.png)
+# RESULT
+Thus Data Visualization is applied on the complex dataset using libraries like Seaborn(sns) and Matplotlib(pyplot) successfully and the data is saved to file.
